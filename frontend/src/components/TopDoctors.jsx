@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import CardSlider from "./TopDoctorSlider";
+
 const TopDoctors = () => {
   const navigate = useNavigate();
 
@@ -45,15 +47,7 @@ const TopDoctors = () => {
           </div>
         ))}
       </div>
-      {/* <button
-        onClick={() => {
-          navigate("/service");
-          scrollTo(0, 0);
-        }}
-        className="bg-[#EAEFFF] text-gray-600 px-12 py-3 border-r-[#0b0606] rounded-full mt-10"
-      >
-        More
-      </button> */}
+      <CardSlider />
       <div className="m-4 inline-block">
         <button
           style={{ borderRadius: "50px" }}
@@ -63,7 +57,7 @@ const TopDoctors = () => {
           }}
           className="relative px-6 py-3 text-lg tracking-wide text-[#725AC1] bg-transparent border-2 border-[#725AC1] rounded-[10px] transition duration-500 ease-out hover:text-white hover:bg-gray-400  active:scale-90 shadow-[inset_0_0_0_0_#725AC1] hover:shadow-[inset_0_-100px_0_0_#725AC1]"
         >
-          More Medicine
+          View More
         </button>
       </div>
     </div>
