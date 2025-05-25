@@ -9,7 +9,7 @@ const TabsWithCards = () => {
 
   return (
     <div className="w-full px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Tabs */}
         <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
           {tabs.map((tab, index) => (

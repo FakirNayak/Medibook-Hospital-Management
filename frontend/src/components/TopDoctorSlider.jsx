@@ -3,6 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../Styles/TopDoctorsty.css";
+import hser1 from "../assets/hser.jpg";
+import hser2 from "../assets/hser2.jpg";
+import hser3 from "../assets/hser3.jpg";
+import hser4 from "../assets/hser4.jpg";
+import hser5 from "../assets/hser5.png";
+import hser6 from "../assets/hser6.jpg";
 
 import { Pagination } from "swiper/modules";
 import { motion, useInView } from "framer-motion";
@@ -37,28 +43,27 @@ const CardSlider = () => {
   const cards = [
     {
       id: 1,
-      image:
-        "https://www.redlandsdailyfacts.com/wp-content/uploads/2021/01/OCR-L-VIRUS-HOSPITALS-0627-09TP-1.jpg?w=1600&resize=1600,900",
+      image: hser1,
     },
     {
       id: 2,
-      image:
-        "https://media.istockphoto.com/id/174979146/photo/ambulance-in-front-of-emergency-entrance-to-hospital.jpg?s=612x612&w=0&k=20&c=SrPpmNSt589PChRdGmZxHLSUGK7ONADrPmDy58BagoA=",
+      image: hser2,
     },
     {
       id: 3,
-      image:
-        "https://media.istockphoto.com/id/1432121066/photo/female-nurse-adjusting-the-blood-pressure-monitor-on-female-hospital-patient.jpg?s=612x612&w=0&k=20&c=QyRo483NPNRgYHZuabkCkGKBbDXsShHvOsDI5desu-g=",
+      image: hser3,
     },
     {
       id: 4,
-      image:
-        "https://media.istockphoto.com/id/1432121066/photo/female-nurse-adjusting-the-blood-pressure-monitor-on-female-hospital-patient.jpg?s=612x612&w=0&k=20&c=QyRo483NPNRgYHZuabkCkGKBbDXsShHvOsDI5desu-g=",
+      image: hser4,
     },
     {
       id: 5,
-      image:
-        "https://media.istockphoto.com/id/1432121066/photo/female-nurse-adjusting-the-blood-pressure-monitor-on-female-hospital-patient.jpg?s=612x612&w=0&k=20&c=QyRo483NPNRgYHZuabkCkGKBbDXsShHvOsDI5desu-g=",
+      image: hser5,
+    },
+    {
+      id: 5,
+      image: hser6,
     },
   ];
 
