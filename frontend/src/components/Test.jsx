@@ -5,7 +5,8 @@ import s3 from "../assets/s3.jpg";
 import s4 from "../assets/s4.jpg";
 import s5 from "../assets/s5.jpg";
 import s6 from "../assets/s6.jpg";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -17,37 +18,15 @@ const services = [
   { title: "Paediatrics", image: s6 },
 ];
 
-// Container animation for stagger effect
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-// Card animation
+// Animation variant
 const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const underlineVariants = {
   rest: { width: 0 },
-  hover: {
-    width: "100%",
-    transition: {
-      duration: 0.4,
-      ease: "easeInOut",
-    },
-  },
+  hover: { width: "100%", transition: { duration: 0.4, ease: "easeInOut" } },
 };
 
 const SpecialisedCare = () => {
@@ -74,49 +53,56 @@ const SpecialisedCare = () => {
         </Link>
       </div>
 
-      {/* Right Side with Grid Animation */}
-      <motion.div
-        className="w-full lg:w-1/2 px-4 py-8 pr-6 z-0"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
+      {/* Right Side */}
+      <div className="w-full lg:w-1/2 px-4 py-8 pr-6 z-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="relative rounded-xl overflow-hidden shadow-lg h-72 cursor-default group"
-              variants={cardVariants}
-            >
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-full object-cover"
-              />
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-40" />
-              {/* Text content */}
-              <div className="absolute bottom-4 left-4 text-white z-20">
-                <h3 className="text-xl font-semibold">{service.title}</h3>
+          {services.map((service, index) => {
+            const controls = useAnimation();
+            const [ref, inView] = useInView({
+              threshold: 0.3,
+              triggerOnce: true,
+            });
 
+            React.useEffect(() => {
+              if (inView) {
+                controls.start("visible");
+              }
+            }, [controls, inView]);
+
+            return (
+              <motion.div
+                key={index}
+                ref={ref}
+                className="relative rounded-xl overflow-hidden shadow-md h-72 cursor-default group will-change-transform"
+                variants={cardVariants}
+                initial="hidden"
+                animate={controls}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40" />
                 <motion.div
-                  className="mt-2"
+                  className="absolute bottom-4 left-4 text-white z-20"
                   initial="rest"
                   whileHover="hover"
                   animate="rest"
                 >
-                  <p className="text-sm">Learn more</p>
+                  <h3 className="text-xl font-semibold">{service.title}</h3>
+                  <p className="text-sm mt-2">Learn more</p>
                   <motion.div
                     className="h-[2px] bg-white mt-1"
                     variants={underlineVariants}
                   />
                 </motion.div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

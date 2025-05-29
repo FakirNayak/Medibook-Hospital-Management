@@ -5,6 +5,7 @@ import TopDoctors from "../components/TopDoctors";
 import Banner from "../components/Banner";
 import VideoSection from "../components/VideoDoctor";
 import SpecialisedCare from "../components/Test";
+import PatienceStories from "../components/PatientStories";
 
 const Home = () => {
   return (
@@ -14,7 +15,8 @@ const Home = () => {
       <TopDoctors />
       <VideoSection />
       <SpecialisedCare />
-      <Banner />
+      <PatienceStories />
+      {/* <Banner /> */}
     </div>
   );
 };
